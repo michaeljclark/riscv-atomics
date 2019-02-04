@@ -194,6 +194,7 @@ __extension__ ({                                                    \
     __typeof__(*(obj)) __result;                                    \
     switch (succ) {                                                 \
     case __ATOMIC_ACQUIRE:                                          \
+    case __ATOMIC_CONSUME: /* promote to acquire for now */         \
         __result = __atomic_cmpxchg_acquire(obj, exp, val); break;  \
     case __ATOMIC_RELEASE:                                          \
         __result = __atomic_cmpxchg_release(obj, exp, val); break;  \
@@ -272,6 +273,7 @@ __extension__ ({                                                    \
     __typeof__(*(obj)) __result;                                    \
     switch (order) {                                                \
     case __ATOMIC_ACQUIRE:                                          \
+    case __ATOMIC_CONSUME: /* promote to acquire for now */         \
         __result = __atomic_op_acquire(op, obj, arg); break;        \
     case __ATOMIC_RELEASE:                                          \
         __result = __atomic_op_release(op, obj, arg); break;        \
