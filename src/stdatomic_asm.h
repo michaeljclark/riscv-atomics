@@ -342,6 +342,160 @@ __extension__ ({                                                    \
 #define atomic_fetch_and_explicit(obj, arg, order) \
     __atomic_op("amoand", obj, -arg, order)
 
+/*
+ * atomic_flag_test_and_set
+ */
+
+#define __atomic_flag_test_and_set_asm(obj, ASM_AQRL)               \
+__extension__ ({                                                    \
+    struct atomic_flag* __obj = (obj);                              \
+    size_t __shift = (((unsigned long)__obj) & 3) << 3;             \
+    uint32_t *__word = (uint32_t *)(((unsigned long)__obj) & ~3);   \
+    uint32_t __mask = 1 << __shift;                                 \
+    uint32_t __result;                                              \
+    __asm__ volatile (                                              \
+          "amoor.w" ASM_AQRL " %0, %2, %1\n"                        \
+        : "=&r"(__result), "+A"(*__word)                            \
+        : "r"(__mask)                                               \
+        : "memory"                                                  \
+    );                                                              \
+    ((__result >> __shift) & 0xff);                                 \
+})
+
+#define __atomic_flag_test_and_set_relaxed(obj) \
+    __atomic_flag_test_and_set_asm(obj, "")
+
+#define __atomic_flag_test_and_set_acquire(obj) \
+    __atomic_flag_test_and_set_asm(obj, ".aq")
+
+#define __atomic_flag_test_and_set_release(obj) \
+    __atomic_flag_test_and_set_asm(obj, ".rl")
+
+#define __atomic_flag_test_and_set_acq_rel(obj) \
+    __atomic_flag_test_and_set_asm(obj, ".aqrl")
+
+#define __atomic_flag_test_and_set_seq_cst(obj) \
+    __atomic_flag_test_and_set_asm(obj, ".aqrl")
+
+
+#define __atomic_flag_test_and_set(obj, order)                      \
+__extension__ ({                                                    \
+    _Bool __result;                                                 \
+    switch (order) {                                                \
+    case __ATOMIC_ACQUIRE:                                          \
+    case __ATOMIC_CONSUME: /* promote to acquire for now */         \
+        __result = __atomic_flag_test_and_set_acquire(obj); break;  \
+    case __ATOMIC_RELEASE:                                          \
+        __result = __atomic_flag_test_and_set_release(obj); break;  \
+    case __ATOMIC_ACQ_REL:                                          \
+        __result = __atomic_flag_test_and_set_acq_rel(obj); break;  \
+    case __ATOMIC_SEQ_CST:                                          \
+        __result = __atomic_flag_test_and_set_seq_cst(obj); break;  \
+    case __ATOMIC_RELAXED:                                          \
+    default:                                                        \
+        __result = __atomic_flag_test_and_set_relaxed(obj); break;  \
+    }                                                               \
+    __result;                                                       \
+})
+
+#define atomic_flag_test_and_set_explicit(obj, order) \
+    __atomic_flag_test_and_set(obj, order)
+#define atomic_flag_test_and_set(obj, order) \
+    __atomic_flag_test_and_set(obj, __ATOMIC_SEQ_CST)
+
+/*
+ * atomic_flag_clear
+ */
+
+#define __atomic_flag_clear_asm(obj, ASM_AQRL)                      \
+__extension__ ({                                                    \
+    struct atomic_flag* __obj = (obj);                              \
+    size_t __shift = (((unsigned long)__obj) & 3) << 3;             \
+    uint32_t *__word = (uint32_t *)(((unsigned long)__obj) & ~3);   \
+    uint32_t __mask = ~(0xff << __shift);                           \
+    uint32_t __result;                                              \
+    __asm__ volatile (                                              \
+          "amoand.w" ASM_AQRL " %0, %2, %1\n"                       \
+        : "=&r"(__result), "+A"(*__word)                            \
+        : "r"(__mask)                                               \
+        : "memory"                                                  \
+    );                                                              \
+    ((__result >> __shift) & 0xff);                                 \
+})
+
+#define __atomic_flag_clear_relaxed(obj) \
+    __atomic_flag_clear_asm(obj, "")
+
+#define __atomic_flag_clear_acquire(obj) \
+    __atomic_flag_clear_asm(obj, ".aq")
+
+#define __atomic_flag_clear_release(obj) \
+    __atomic_flag_clear_asm(obj, ".rl")
+
+#define __atomic_flag_clear_acq_rel(obj) \
+    __atomic_flag_clear_asm(obj, ".aqrl")
+
+#define __atomic_flag_clear_seq_cst(obj) \
+    __atomic_flag_clear_asm(obj, ".aqrl")
+
+
+#define __atomic_flag_clear(obj, order)                             \
+__extension__ ({                                                    \
+    _Bool __result;                                                 \
+    switch (order) {                                                \
+    case __ATOMIC_ACQUIRE:                                          \
+    case __ATOMIC_CONSUME: /* promote to acquire for now */         \
+        __result = __atomic_flag_clear_acquire(obj); break;         \
+    case __ATOMIC_RELEASE:                                          \
+        __result = __atomic_flag_clear_release(obj); break;         \
+    case __ATOMIC_ACQ_REL:                                          \
+        __result = __atomic_flag_clear_acq_rel(obj); break;         \
+    case __ATOMIC_SEQ_CST:                                          \
+        __result = __atomic_flag_clear_seq_cst(obj); break;         \
+    case __ATOMIC_RELAXED:                                          \
+    default:                                                        \
+        __result = __atomic_flag_clear_relaxed(obj); break;         \
+    }                                                               \
+    __result;                                                       \
+})
+
+#define atomic_flag_clear_explicit(obj, order) \
+    __atomic_flag_clear(obj, order)
+#define atomic_flag_clear(obj, order) \
+    __atomic_flag_clear(obj, __ATOMIC_SEQ_CST)
+
+/*
+ * atomic_thread_fence
+ */
+
+#define __atomic_thread_fence_asm(order)                            \
+__extension__ ({                                                    \
+    switch (order) {                                                \
+    case __ATOMIC_ACQUIRE:                                          \
+    case __ATOMIC_CONSUME: /* promote to acquire for now */         \
+        __asm__ volatile ("fence r,rw" ::: "memory"); break;        \
+    case __ATOMIC_RELEASE:                                          \
+        __asm__ volatile ("fence rw,w" ::: "memory"); break;        \
+    case __ATOMIC_ACQ_REL: /* should be fence.tso */                \
+        __asm__ volatile ("fence rw,rw" ::: "memory"); break;       \
+    case __ATOMIC_SEQ_CST:                                          \
+        __asm__ volatile ("fence rw,rw" ::: "memory"); break;       \
+    case __ATOMIC_RELAXED:                                          \
+    default:                                                        \
+        __asm__ volatile ("" ::: "memory"); break;                  \
+    }                                                               \
+})
+
+#define atomic_thread_fence(order) \
+    __atomic_thread_fence_asm(order)
+
+/*
+ * atomic_signal_fence
+ */
+
+#define atomic_signal_fence(order) \
+    __asm__ volatile ("" ::: "memory")
+
 #endif /* defined(__riscv) */
 
 #ifdef __cplusplus

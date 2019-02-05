@@ -22,15 +22,15 @@ inline assembly based on the hitherto guidelines:
 - atomic_exchange
 - atomic_load
 - atomic_store
+- atomic_flag_test_and_set
+- atomic_flag_clear
+- atomic_thread_fence
+- atomic_signal_fence
 
 The follow versions of the C/C++ atomics currently only have mappings to
 the GCC builtin atomics:
 
-- atomic_flag_test_and_set
-- atomic_flag_clear
 - atomic_is_lock_free
-- atomic_thread_fence
-- atomic_signal_fence
 
 The purpose of the repository is to test the GCC atomic builtins and compare
 their output to hand-coded assembly constructed to match the atomic mappings

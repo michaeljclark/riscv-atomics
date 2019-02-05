@@ -15,7 +15,11 @@ TESTS           = atomic_compare_exchange \
                   atomic_fetch_sub \
                   atomic_fetch_or \
                   atomic_fetch_xor \
-                  atomic_fetch_and
+                  atomic_fetch_and \
+                  atomic_flag_test_and_set \
+                  atomic_flag_clear \
+                  atomic_thread_fence \
+                  atomic_signal_fence
 
 GCC_TEST_OBJS   = $(addsuffix _gcc.o,$(addprefix build/obj/,$(TESTS)))
 ASM_TEST_OBJS   = $(addsuffix _asm.o,$(addprefix build/obj/,$(TESTS)))
