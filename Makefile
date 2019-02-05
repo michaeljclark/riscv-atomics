@@ -1,6 +1,7 @@
 CROSS_COMPILE   ?= riscv64-unknown-elf-
 
 CC              = $(CROSS_COMPILE)gcc
+OBJDUMP         = $(CROSS_COMPILE)objdump
 CFLAGS          = -std=gnu11 -g -Wall -Wpedantic -O3 -Isrc -nostdinc \
 		  -mcmodel=medany
 
@@ -25,11 +26,15 @@ GCC_TEST_OBJS   = $(addsuffix _gcc.o,$(addprefix build/obj/,$(TESTS)))
 ASM_TEST_OBJS   = $(addsuffix _asm.o,$(addprefix build/obj/,$(TESTS)))
 ALL_TEST_OBJS   = $(GCC_TEST_OBJS) $(ASM_TEST_OBJS)
 
+GCC_TEST_DUMP   = $(addsuffix _gcc.txt,$(addprefix build/out/,$(TESTS)))
+ASM_TEST_DUMP   = $(addsuffix _asm.txt,$(addprefix build/out/,$(TESTS)))
+ALL_TEST_DUMP   = $(GCC_TEST_DUMP) $(ASM_TEST_DUMP)
+
 # build targets
 
 all: tests
 
-tests: $(ALL_TEST_OBJS)
+tests: $(ALL_TEST_OBJS) $(ALL_TEST_DUMP)
 
 clean: ; rm -fr build
 
@@ -42,3 +47,9 @@ build/obj/%_gcc.o: test/%.c
 
 build/obj/%_asm.o: test/%.c
 	@echo CC $@ ; mkdir -p $(@D) ; $(CC) $(CFLAGS) -DATOMIC_ASM=1 -c -o $@ $<
+
+build/out/%_gcc.txt: build/obj/%_gcc.o
+	@echo OBJDUMP $@ ; mkdir -p $(@D) ; $(OBJDUMP) -d $< > $@
+
+build/out/%_asm.txt: build/obj/%_asm.o
+	@echo OBJDUMP $@ ; mkdir -p $(@D) ; $(OBJDUMP) -d $< > $@
