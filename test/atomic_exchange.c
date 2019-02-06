@@ -7,46 +7,49 @@
  * ... Table A.6: Mappings from C/C++ primitives to RISC-V primitives.
  */
 
-#include <stdatomic.h>
-
-int int_val;
+#include "test_template.h"
 
 /*
- *     amoswap.w      a4,1,(a5)
+ * li                a4,1
+ * amoswap.[wd]      a0,a4,(a5)
  */
-int test_atomic_exchange_relaxed()
-{
-    return atomic_exchange_explicit(&int_val, 1, memory_order_relaxed);
-}
+TEST_TEMPLATE_OP(atomic_exchange_explicit, int32_t, 1, memory_order_relaxed)
+#if __riscv_xlen == 64
+TEST_TEMPLATE_OP(atomic_exchange_explicit, int64_t, 1, memory_order_relaxed)
+#endif
 
 /*
- *     amoswap.w.aq   a4,1,(a5)
+ * li                a4,1
+ * amoswap.[wd].aq   a0,a4,(a5)
  */
-int test_atomic_exchange_acquire()
-{
-    return atomic_exchange_explicit(&int_val, 1, memory_order_acquire);
-}
+TEST_TEMPLATE_OP(atomic_exchange_explicit, int32_t, 1, memory_order_acquire)
+#if __riscv_xlen == 64
+TEST_TEMPLATE_OP(atomic_exchange_explicit, int64_t, 1, memory_order_acquire)
+#endif
 
 /*
- *     amoswap.w.rl   a4,1,(a5)
+ * li                a4,1
+ * amoswap.[wd].rl   a0,a4,(a5)
  */
-int test_atomic_exchange_release()
-{
-    return atomic_exchange_explicit(&int_val, 1, memory_order_release);
-}
+TEST_TEMPLATE_OP(atomic_exchange_explicit, int32_t, 1, memory_order_release)
+#if __riscv_xlen == 64
+TEST_TEMPLATE_OP(atomic_exchange_explicit, int64_t, 1, memory_order_release)
+#endif
 
 /*
- *     amoswap.w.aqrl a4,1,(a5)
+ * li                a4,1
+ * amoswap.[wd].aqrl a0,a4,(a5)
  */
-int test_atomic_exchange_acq_rel()
-{
-    return atomic_exchange_explicit(&int_val, 1, memory_order_acq_rel);
-}
+TEST_TEMPLATE_OP(atomic_exchange_explicit, int32_t, 1, memory_order_acq_rel)
+#if __riscv_xlen == 64
+TEST_TEMPLATE_OP(atomic_exchange_explicit, int64_t, 1, memory_order_acq_rel)
+#endif
 
 /*
- *     amoswap.w.aqrl a4,1,(a5)
+ * li                a4,1
+ * amoswap.[wd].aqrl a0,a4,(a5)
  */
-int test_atomic_exchange_seq_cst()
-{
-    return atomic_exchange_explicit(&int_val, 1, memory_order_seq_cst);
-}
+TEST_TEMPLATE_OP(atomic_exchange_explicit, int32_t, 1, memory_order_seq_cst)
+#if __riscv_xlen == 64
+TEST_TEMPLATE_OP(atomic_exchange_explicit, int64_t, 1, memory_order_seq_cst)
+#endif

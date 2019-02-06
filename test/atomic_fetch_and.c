@@ -7,46 +7,49 @@
  * ... Table A.6: Mappings from C/C++ primitives to RISC-V primitives.
  */
 
-#include <stdatomic.h>
-
-int int_val;
+#include "test_template.h"
 
 /*
- *     amoand.w      a4,1,(a5)
+ * li                a4,1
+ * amoand.[wd]       a0,a4,(a5)
  */
-int test_atomic_fetch_and_relaxed()
-{
-    return atomic_fetch_and_explicit(&int_val, 1, memory_order_relaxed);
-}
+TEST_TEMPLATE_OP(atomic_fetch_and_explicit, int32_t, 1, memory_order_relaxed)
+#if __riscv_xlen == 64
+TEST_TEMPLATE_OP(atomic_fetch_and_explicit, int64_t, 1, memory_order_relaxed)
+#endif
 
 /*
- *     amoand.w.aq   a4,1,(a5)
+ * li                a4,1
+ * amoand.[wd].aq    a0,a4,(a5)
  */
-int test_atomic_fetch_and_acquire()
-{
-    return atomic_fetch_and_explicit(&int_val, 1, memory_order_acquire);
-}
+TEST_TEMPLATE_OP(atomic_fetch_and_explicit, int32_t, 1, memory_order_acquire)
+#if __riscv_xlen == 64
+TEST_TEMPLATE_OP(atomic_fetch_and_explicit, int64_t, 1, memory_order_acquire)
+#endif
 
 /*
- *     amoand.w.rl   a4,1,(a5)
+ * li                a4,1
+ * amoand.[wd].rl    a0,a4,(a5)
  */
-int test_atomic_fetch_and_release()
-{
-    return atomic_fetch_and_explicit(&int_val, 1, memory_order_release);
-}
+TEST_TEMPLATE_OP(atomic_fetch_and_explicit, int32_t, 1, memory_order_release)
+#if __riscv_xlen == 64
+TEST_TEMPLATE_OP(atomic_fetch_and_explicit, int64_t, 1, memory_order_release)
+#endif
 
 /*
- *     amoand.w.aqrl a4,1,(a5)
+ * li                a4,1
+ * amoand.[wd].aqrl  a0,a4,(a5)
  */
-int test_atomic_fetch_and_acq_rel()
-{
-    return atomic_fetch_and_explicit(&int_val, 1, memory_order_acq_rel);
-}
+TEST_TEMPLATE_OP(atomic_fetch_and_explicit, int32_t, 1, memory_order_acq_rel)
+#if __riscv_xlen == 64
+TEST_TEMPLATE_OP(atomic_fetch_and_explicit, int64_t, 1, memory_order_acq_rel)
+#endif
 
 /*
- *     amoand.w.aqrl a4,1,(a5)
+ * li                a4,1
+ * amoand.[wd].aqrl  a0,a4,(a5)
  */
-int test_atomic_fetch_and_seq_cst()
-{
-    return atomic_fetch_and_explicit(&int_val, 1, memory_order_seq_cst);
-}
+TEST_TEMPLATE_OP(atomic_fetch_and_explicit, int32_t, 1, memory_order_seq_cst)
+#if __riscv_xlen == 64
+TEST_TEMPLATE_OP(atomic_fetch_and_explicit, int64_t, 1, memory_order_seq_cst)
+#endif

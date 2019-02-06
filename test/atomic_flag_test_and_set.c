@@ -7,20 +7,18 @@
  * ... Table A.6: Mappings from C/C++ primitives to RISC-V primitives.
  */
 
-#include <stdatomic.h>
-
-atomic_flag flag_val;
+#include "test_template.h"
 
 /*
- *     slli     a0,a5,0x3
- *     andi     a4,a0,24
- *     li       a3,1
- *     andi     a5,a5,-4
- *     sllw     a3,a3,a4
- *     amoor.w  a0,a3,(a5)
- *     srlw     a0,a0,a4
- *     andi     a0,a0,255
- *     snez     a0,a0
+ * slli              a0,a5,0x3
+ * andi              a4,a0,24
+ * li                a3,1
+ * andi              a5,a5,-4
+ * sllw              a3,a3,a4
+ * amoor.[wd]        a0,a3,(a5)
+ * srlw              a0,a0,a4
+ * andi              a0,a0,255
+ * snez              a0,a0
  */
 _Bool test_atomic_flag_test_and_set_relaxed()
 {
@@ -28,9 +26,9 @@ _Bool test_atomic_flag_test_and_set_relaxed()
 }
 
 /*
- *     ,,,
- *     amoor.w.aq  a0,a3,(a5)
- *     ,,,
+ * ,,,
+ * amoor.[wd].aq     a0,a3,(a5)
+ * ,,,
  */
 _Bool test_atomic_flag_test_and_set_acquire()
 {
@@ -38,9 +36,9 @@ _Bool test_atomic_flag_test_and_set_acquire()
 }
 
 /*
- *     ,,,
- *     amoor.w.rl  a0,a3,(a5)
- *     ,,,
+ * ,,,
+ * amoor.[wd].rl     a0,a3,(a5)
+ * ,,,
  */
 _Bool test_atomic_flag_test_and_set_release()
 {
@@ -48,9 +46,9 @@ _Bool test_atomic_flag_test_and_set_release()
 }
 
 /*
- *     ,,,
- *     amoor.w.aqrl  a0,a3,(a5)
- *     ,,,
+ * ,,,
+ * amoor.[wd].aqrl   a0,a3,(a5)
+ * ,,,
  */
 _Bool test_atomic_flag_test_and_set_acq_rel()
 {
@@ -58,9 +56,9 @@ _Bool test_atomic_flag_test_and_set_acq_rel()
 }
 
 /*
- *     ,,,
- *     amoor.w.aqrl  a0,a3,(a5)
- *     ,,,
+ * ,,,
+ * amoor.[wd].aqrl   a0,a3,(a5)
+ * ,,,
  */
 _Bool test_atomic_flag_test_and_set_seq_cst()
 {

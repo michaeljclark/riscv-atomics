@@ -7,10 +7,10 @@
  * ... Table A.6: Mappings from C/C++ primitives to RISC-V primitives.
  */
 
-#include <stdatomic.h>
+#include "test_template.h"
 
 /*
- *     <no output>
+ * <no output>
  */
 void test_atomic_thread_fence_relaxed()
 {
@@ -18,7 +18,7 @@ void test_atomic_thread_fence_relaxed()
 }
 
 /*
- *     fence    r,rw
+ * fence             r,rw
  */
 void test_atomic_thread_fence_acquire()
 {
@@ -26,7 +26,7 @@ void test_atomic_thread_fence_acquire()
 }
 
 /*
- *     fence    rw,w
+ * fence             rw,w
  */
 void test_atomic_thread_fence_release()
 {
@@ -34,7 +34,7 @@ void test_atomic_thread_fence_release()
 }
 
 /*
- *     fence.tso
+ * fence.tso
  *
  * Note: fence.tso is unimplemented so this currently emits fence rw,rw
  */
@@ -44,7 +44,7 @@ void test_atomic_thread_fence_acq_rel()
 }
 
 /*
- *     fence    rw,w
+ * fence             rw,w
  */
 void test_atomic_thread_fence_seq_cst()
 {

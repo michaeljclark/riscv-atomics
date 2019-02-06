@@ -7,32 +7,39 @@
  * ... Table A.6: Mappings from C/C++ primitives to RISC-V primitives.
  */
 
-#include <stdatomic.h>
-
-int int_val;
+#include "test_template.h"
 
 /*
- *     sw       a4,0(a5)
+ * li                a4,1
+ * s[b|h|w|d]        a4,0(a5)
  */
-void test_atomic_store_relaxed()
-{
-    atomic_store_explicit(&int_val, 1, memory_order_relaxed);
-}
+TEST_TEMPLATE_STORE(atomic_store_explicit, int8_t, 1, memory_order_relaxed)
+TEST_TEMPLATE_STORE(atomic_store_explicit, int16_t, 1, memory_order_relaxed)
+TEST_TEMPLATE_STORE(atomic_store_explicit, int32_t, 1, memory_order_relaxed)
+#if __riscv_xlen == 64
+TEST_TEMPLATE_STORE(atomic_store_explicit, int64_t, 1, memory_order_relaxed)
+#endif
 
 /*
- *     fence    rw,w
- *     sw       a4,0(a5)
+ * li                a4,1
+ * fence             rw,w
+ * s[b|h|w|d]        a4,0(a5)
  */
-void test_atomic_store_release()
-{
-    atomic_store_explicit(&int_val, 1, memory_order_release);
-}
+TEST_TEMPLATE_STORE(atomic_store_explicit, int8_t, 1, memory_order_release)
+TEST_TEMPLATE_STORE(atomic_store_explicit, int16_t, 1, memory_order_release)
+TEST_TEMPLATE_STORE(atomic_store_explicit, int32_t, 1, memory_order_release)
+#if __riscv_xlen == 64
+TEST_TEMPLATE_STORE(atomic_store_explicit, int64_t, 1, memory_order_release)
+#endif
 
 /*
- *     fence    rw,w
- *     sw       a4,0(a5)
+ * li                a4,1
+ * fence             rw,w
+ * s[b|h|w|d]        a4,0(a5)
  */
-void test_atomic_store_seq_cst()
-{
-    atomic_store_explicit(&int_val, 1, memory_order_seq_cst);
-}
+TEST_TEMPLATE_STORE(atomic_store_explicit, int8_t, 1, memory_order_seq_cst)
+TEST_TEMPLATE_STORE(atomic_store_explicit, int16_t, 1, memory_order_seq_cst)
+TEST_TEMPLATE_STORE(atomic_store_explicit, int32_t, 1, memory_order_seq_cst)
+#if __riscv_xlen == 64
+TEST_TEMPLATE_STORE(atomic_store_explicit, int64_t, 1, memory_order_seq_cst)
+#endif

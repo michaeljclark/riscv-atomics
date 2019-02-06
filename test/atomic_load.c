@@ -7,33 +7,37 @@
  * ... Table A.6: Mappings from C/C++ primitives to RISC-V primitives.
  */
 
-#include <stdatomic.h>
-
-int int_val;
+#include "test_template.h"
 
 /*
- *     lw       a4,0(a5)
+ * l[b|h|w|d]        a4,0(a5)
  */
-void test_atomic_load_relaxed()
-{
-    atomic_load_explicit(&int_val, memory_order_relaxed);
-}
+TEST_TEMPLATE_LOAD(atomic_load_explicit, int8_t, memory_order_relaxed)
+TEST_TEMPLATE_LOAD(atomic_load_explicit, int16_t, memory_order_relaxed)
+TEST_TEMPLATE_LOAD(atomic_load_explicit, int32_t, memory_order_relaxed)
+#if __riscv_xlen == 64
+TEST_TEMPLATE_LOAD(atomic_load_explicit, int64_t, memory_order_relaxed)
+#endif
 
 /*
- *     lw       a4,0(a5)
- *     fence    r,rw
+ * l[b|h|w|d]        a4,0(a5)
+ * fence             r,rw
  */
-void test_atomic_load_acquire()
-{
-    atomic_load_explicit(&int_val, memory_order_acquire);
-}
+TEST_TEMPLATE_LOAD(atomic_load_explicit, int8_t, memory_order_acquire)
+TEST_TEMPLATE_LOAD(atomic_load_explicit, int16_t, memory_order_acquire)
+TEST_TEMPLATE_LOAD(atomic_load_explicit, int32_t, memory_order_acquire)
+#if __riscv_xlen == 64
+TEST_TEMPLATE_LOAD(atomic_load_explicit, int64_t, memory_order_acquire)
+#endif
 
 /*
- *     fence    rw,rw
- *     lw       a4,0(a5)
- *     fence    r,rw
+ * fence             rw,rw
+ * l[b|h|w|d]        a4,0(a5)
+ * fence             r,rw
  */
-void test_atomic_load_seq_cst()
-{
-    atomic_load_explicit(&int_val, memory_order_seq_cst);
-}
+TEST_TEMPLATE_LOAD(atomic_load_explicit, int8_t, memory_order_seq_cst)
+TEST_TEMPLATE_LOAD(atomic_load_explicit, int16_t, memory_order_seq_cst)
+TEST_TEMPLATE_LOAD(atomic_load_explicit, int32_t, memory_order_seq_cst)
+#if __riscv_xlen == 64
+TEST_TEMPLATE_LOAD(atomic_load_explicit, int64_t, memory_order_seq_cst)
+#endif

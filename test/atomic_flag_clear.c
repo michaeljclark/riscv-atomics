@@ -7,21 +7,19 @@
  * ... Table A.6: Mappings from C/C++ primitives to RISC-V primitives.
  */
 
-#include <stdatomic.h>
-
-atomic_flag flag_val;
+#include "test_template.h"
 
 /*
- *     slli     a0,a4,0x3
- *     andi     a3,a0,24
- *     li       a5,255
- *     sllw     a5,a5,a3
- *     andi     a4,a4,-4
- *     not      a5,a5
- *     amoand.w a0,a5,(a4)
- *     srlw     a0,a0,a3
- *     andi     a0,a0,255
- *     snez     a0,a0
+ * slli              a0,a4,0x3
+ * andi              a3,a0,24
+ * li                a5,255
+ * sllw              a5,a5,a3
+ * andi              a4,a4,-4
+ * not               a5,a5
+ * amoand.[wd]       a0,a5,(a4)
+ * srlw              a0,a0,a3
+ * andi              a0,a0,255
+ * snez              a0,a0
  */
 _Bool test_atomic_flag_clear_relaxed()
 {
@@ -29,9 +27,9 @@ _Bool test_atomic_flag_clear_relaxed()
 }
 
 /*
- *     ,,,
- *     amoand.w.aq a0,a5,(a4)
- *     ,,,
+ * ,,,
+ * amoand.[wd].aq    a0,a5,(a4)
+ * ,,,
  */
 _Bool test_atomic_flag_clear_acquire()
 {
@@ -39,9 +37,9 @@ _Bool test_atomic_flag_clear_acquire()
 }
 
 /*
- *     ,,,
- *     amoand.w.rl a0,a5,(a4)
- *     ,,,
+ * ,,,
+ * amoand.[wd].rl    a0,a5,(a4)
+ * ,,,
  */
 _Bool test_atomic_flag_clear_release()
 {
@@ -49,9 +47,9 @@ _Bool test_atomic_flag_clear_release()
 }
 
 /*
- *     ,,,
- *     amoand.w.aqrl a0,a5,(a4)
- *     ,,,
+ * ,,,
+ * amoand.[wd].aqrl  a0,a5,(a4)
+ * ,,,
  */
 _Bool test_atomic_flag_clear_acq_rel()
 {
@@ -59,9 +57,9 @@ _Bool test_atomic_flag_clear_acq_rel()
 }
 
 /*
- *     ,,,
- *     amoand.w.aqrl a0,a5,(a4)
- *     ,,,
+ * ,,,
+ * amoand.[wd].aqrl  a0,a5,(a4)
+ * ,,,
  */
 _Bool test_atomic_flag_clear_seq_cst()
 {
