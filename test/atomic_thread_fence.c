@@ -44,7 +44,7 @@ void test_atomic_thread_fence_acq_rel()
 }
 
 /*
- * fence             rw,w
+ * fence             rw,rw
  */
 void test_atomic_thread_fence_seq_cst()
 {
