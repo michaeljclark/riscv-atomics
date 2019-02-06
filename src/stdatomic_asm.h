@@ -139,7 +139,7 @@ __extension__ ({                                                    \
 #define __atomic_cmpxchg_asm(obj, exp, val, ASM_AQ, ASM_RL)         \
 __extension__ ({                                                    \
     __typeof__(obj) __obj = (obj);                                  \
-    __typeof__(*(obj)) __exp = (exp);                               \
+    __typeof__(obj) __exp = (exp);                                  \
     __typeof__(*(obj)) __val = (val);                               \
     __typeof__(*(obj)) __result;                                    \
     register unsigned int __ret;                                    \
@@ -156,7 +156,7 @@ __extension__ ({                                                    \
               "    bnez %1, 0b  \n" /* always strong */             \
               "1:\n"                                                \
             : "=&r"(__result), "=&r" (__ret), "+A"(*__obj)          \
-            : "r"(__exp), "r"(__val)                                \
+            : "r"(*__exp), "r"(__val)                               \
             : "memory"                                              \
         );                                                          \
         break;                                                      \
@@ -169,7 +169,7 @@ __extension__ ({                                                    \
               "    bnez %1, 0b  \n" /* always strong */             \
               "1:\n"                                                \
             : "=&r"(__result), "=&r" (__ret), "+A"(*__obj)          \
-            : "r"(__exp), "r"(__val)                                \
+            : "r"(*__exp), "r"(__val)                               \
             : "memory"                                              \
         );                                                          \
         break;                                                      \

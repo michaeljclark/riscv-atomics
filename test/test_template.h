@@ -29,7 +29,8 @@ void CONCAT_3(_,func,type,order)()                                      \
 #define TEST_TEMPLATE_CMPXCHG(func,type,expected,desired,succ,fail)     \
 type CONCAT_3(_,func,type,succ)()                                       \
 {                                                                       \
-    return func(&GLUE(type,_val), expected, desired, succ, fail);       \
+    __typeof__(GLUE(type,_val)) __expected = expected;                  \
+    return func(&GLUE(type,_val), &__expected, desired, succ, fail);    \
 }
 
 atomic_flag flag_val;
