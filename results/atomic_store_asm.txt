@@ -1,0 +1,113 @@
+
+build/obj/atomic_store_asm.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <atomic_store_explicit_int8_t_memory_order_relaxed>:
+   0:	00000797          	auipc	a5,0x0
+   4:	00078793          	mv	a5,a5
+   8:	4705                	li	a4,1
+   a:	00e78023          	sb	a4,0(a5) # 0 <atomic_store_explicit_int8_t_memory_order_relaxed>
+
+000000000000000e <.L0 >:
+   e:	8082                	ret
+
+0000000000000010 <atomic_store_explicit_int16_t_memory_order_relaxed>:
+  10:	00000797          	auipc	a5,0x0
+  14:	00078793          	mv	a5,a5
+  18:	4705                	li	a4,1
+  1a:	00e79023          	sh	a4,0(a5) # 10 <atomic_store_explicit_int16_t_memory_order_relaxed>
+
+000000000000001e <.L0 >:
+  1e:	8082                	ret
+
+0000000000000020 <atomic_store_explicit_int32_t_memory_order_relaxed>:
+  20:	00000797          	auipc	a5,0x0
+  24:	00078793          	mv	a5,a5
+  28:	4705                	li	a4,1
+  2a:	c398                	sw	a4,0(a5)
+
+000000000000002c <.L0 >:
+  2c:	8082                	ret
+
+000000000000002e <atomic_store_explicit_int64_t_memory_order_relaxed>:
+  2e:	00000797          	auipc	a5,0x0
+  32:	00078793          	mv	a5,a5
+  36:	4705                	li	a4,1
+  38:	e398                	sd	a4,0(a5)
+
+000000000000003a <.L0 >:
+  3a:	8082                	ret
+
+000000000000003c <atomic_store_explicit_int8_t_memory_order_release>:
+  3c:	00000797          	auipc	a5,0x0
+  40:	00078793          	mv	a5,a5
+  44:	4705                	li	a4,1
+  46:	0310000f          	fence	rw,w
+  4a:	00e78023          	sb	a4,0(a5) # 3c <atomic_store_explicit_int8_t_memory_order_release>
+
+000000000000004e <.L0 >:
+  4e:	8082                	ret
+
+0000000000000050 <atomic_store_explicit_int16_t_memory_order_release>:
+  50:	00000797          	auipc	a5,0x0
+  54:	00078793          	mv	a5,a5
+  58:	4705                	li	a4,1
+  5a:	0310000f          	fence	rw,w
+  5e:	00e79023          	sh	a4,0(a5) # 50 <atomic_store_explicit_int16_t_memory_order_release>
+
+0000000000000062 <.L0 >:
+  62:	8082                	ret
+
+0000000000000064 <atomic_store_explicit_int32_t_memory_order_release>:
+  64:	00000797          	auipc	a5,0x0
+  68:	00078793          	mv	a5,a5
+  6c:	4705                	li	a4,1
+  6e:	0310000f          	fence	rw,w
+  72:	c398                	sw	a4,0(a5)
+
+0000000000000074 <.L0 >:
+  74:	8082                	ret
+
+0000000000000076 <atomic_store_explicit_int64_t_memory_order_release>:
+  76:	00000797          	auipc	a5,0x0
+  7a:	00078793          	mv	a5,a5
+  7e:	4705                	li	a4,1
+  80:	0310000f          	fence	rw,w
+  84:	e398                	sd	a4,0(a5)
+
+0000000000000086 <.L0 >:
+  86:	8082                	ret
+
+0000000000000088 <atomic_store_explicit_int8_t_memory_order_seq_cst>:
+  88:	00000797          	auipc	a5,0x0
+  8c:	00078793          	mv	a5,a5
+  90:	4705                	li	a4,1
+  92:	0310000f          	fence	rw,w
+  96:	00e78023          	sb	a4,0(a5) # 88 <atomic_store_explicit_int8_t_memory_order_seq_cst>
+  9a:	8082                	ret
+
+000000000000009c <atomic_store_explicit_int16_t_memory_order_seq_cst>:
+  9c:	00000797          	auipc	a5,0x0
+  a0:	00078793          	mv	a5,a5
+  a4:	4705                	li	a4,1
+  a6:	0310000f          	fence	rw,w
+  aa:	00e79023          	sh	a4,0(a5) # 9c <atomic_store_explicit_int16_t_memory_order_seq_cst>
+  ae:	8082                	ret
+
+00000000000000b0 <atomic_store_explicit_int32_t_memory_order_seq_cst>:
+  b0:	00000797          	auipc	a5,0x0
+  b4:	00078793          	mv	a5,a5
+  b8:	4705                	li	a4,1
+  ba:	0310000f          	fence	rw,w
+  be:	c398                	sw	a4,0(a5)
+  c0:	8082                	ret
+
+00000000000000c2 <atomic_store_explicit_int64_t_memory_order_seq_cst>:
+  c2:	00000797          	auipc	a5,0x0
+  c6:	00078793          	mv	a5,a5
+  ca:	4705                	li	a4,1
+  cc:	0310000f          	fence	rw,w
+  d0:	e398                	sd	a4,0(a5)
+  d2:	8082                	ret

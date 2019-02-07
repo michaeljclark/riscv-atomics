@@ -1,0 +1,123 @@
+
+build/obj/atomic_flag_test_and_set_asm.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <test_atomic_flag_test_and_set_relaxed>:
+   0:	00000797          	auipc	a5,0x0
+   4:	00078793          	mv	a5,a5
+
+0000000000000008 <.L0 >:
+   8:	00379513          	slli	a0,a5,0x3
+   c:	01857713          	andi	a4,a0,24
+
+0000000000000010 <.LVL2>:
+  10:	4685                	li	a3,1
+  12:	9bf1                	andi	a5,a5,-4
+
+0000000000000014 <.L0 >:
+  14:	00e696bb          	sllw	a3,a3,a4
+  18:	40d7a52f          	amoor.w	a0,a3,(a5)
+
+000000000000001c <.L0 >:
+  1c:	00e5553b          	srlw	a0,a0,a4
+
+0000000000000020 <.LBE4>:
+  20:	0ff57513          	andi	a0,a0,255
+
+0000000000000024 <.L0 >:
+  24:	00a03533          	snez	a0,a0
+  28:	8082                	ret
+
+000000000000002a <test_atomic_flag_test_and_set_acquire>:
+  2a:	00000797          	auipc	a5,0x0
+  2e:	00078793          	mv	a5,a5
+
+0000000000000032 <.L0 >:
+  32:	00379513          	slli	a0,a5,0x3
+  36:	01857713          	andi	a4,a0,24
+
+000000000000003a <.LVL8>:
+  3a:	4685                	li	a3,1
+  3c:	9bf1                	andi	a5,a5,-4
+
+000000000000003e <.L0 >:
+  3e:	00e696bb          	sllw	a3,a3,a4
+  42:	44d7a52f          	amoor.w.aq	a0,a3,(a5)
+
+0000000000000046 <.L0 >:
+  46:	00e5553b          	srlw	a0,a0,a4
+
+000000000000004a <.LBE7>:
+  4a:	0ff57513          	andi	a0,a0,255
+
+000000000000004e <.L0 >:
+  4e:	00a03533          	snez	a0,a0
+  52:	8082                	ret
+
+0000000000000054 <test_atomic_flag_test_and_set_release>:
+  54:	00000797          	auipc	a5,0x0
+  58:	00078793          	mv	a5,a5
+
+000000000000005c <.L0 >:
+  5c:	00379513          	slli	a0,a5,0x3
+  60:	01857713          	andi	a4,a0,24
+
+0000000000000064 <.LVL14>:
+  64:	4685                	li	a3,1
+  66:	9bf1                	andi	a5,a5,-4
+
+0000000000000068 <.L0 >:
+  68:	00e696bb          	sllw	a3,a3,a4
+  6c:	42d7a52f          	amoor.w.rl	a0,a3,(a5)
+
+0000000000000070 <.L0 >:
+  70:	00e5553b          	srlw	a0,a0,a4
+
+0000000000000074 <.LBE10>:
+  74:	0ff57513          	andi	a0,a0,255
+
+0000000000000078 <.L0 >:
+  78:	00a03533          	snez	a0,a0
+  7c:	8082                	ret
+
+000000000000007e <test_atomic_flag_test_and_set_acq_rel>:
+  7e:	00000797          	auipc	a5,0x0
+  82:	00078793          	mv	a5,a5
+
+0000000000000086 <.L0 >:
+  86:	00379513          	slli	a0,a5,0x3
+  8a:	01857713          	andi	a4,a0,24
+
+000000000000008e <.LVL20>:
+  8e:	4685                	li	a3,1
+  90:	9bf1                	andi	a5,a5,-4
+
+0000000000000092 <.L0 >:
+  92:	00e696bb          	sllw	a3,a3,a4
+  96:	46d7a52f          	amoor.w.aqrl	a0,a3,(a5)
+
+000000000000009a <.L0 >:
+  9a:	00e5553b          	srlw	a0,a0,a4
+
+000000000000009e <.LBE15>:
+  9e:	0ff57513          	andi	a0,a0,255
+
+00000000000000a2 <.L0 >:
+  a2:	00a03533          	snez	a0,a0
+  a6:	8082                	ret
+
+00000000000000a8 <test_atomic_flag_test_and_set_seq_cst>:
+  a8:	00000797          	auipc	a5,0x0
+  ac:	00078793          	mv	a5,a5
+  b0:	00379513          	slli	a0,a5,0x3
+  b4:	01857713          	andi	a4,a0,24
+  b8:	4685                	li	a3,1
+  ba:	9bf1                	andi	a5,a5,-4
+  bc:	00e696bb          	sllw	a3,a3,a4
+  c0:	46d7a52f          	amoor.w.aqrl	a0,a3,(a5)
+  c4:	00e5553b          	srlw	a0,a0,a4
+  c8:	0ff57513          	andi	a0,a0,255
+  cc:	00a03533          	snez	a0,a0
+  d0:	8082                	ret

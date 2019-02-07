@@ -1,0 +1,121 @@
+
+build/obj/atomic_exchange_gcc.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <atomic_exchange_explicit_int32_t_memory_order_relaxed>:
+   0:	4505                	li	a0,1
+
+0000000000000002 <.L0 >:
+   2:	00000797          	auipc	a5,0x0
+   6:	00078793          	mv	a5,a5
+   a:	872a                	mv	a4,a0
+   c:	08e7a72f          	amoswap.w	a4,a4,(a5)
+  10:	0007051b          	sext.w	a0,a4
+  14:	8082                	ret
+
+0000000000000016 <atomic_exchange_explicit_int64_t_memory_order_relaxed>:
+  16:	4505                	li	a0,1
+
+0000000000000018 <.L0 >:
+  18:	00000797          	auipc	a5,0x0
+  1c:	00078793          	mv	a5,a5
+  20:	872a                	mv	a4,a0
+  22:	08e7b72f          	amoswap.d	a4,a4,(a5)
+  26:	853a                	mv	a0,a4
+  28:	8082                	ret
+
+000000000000002a <atomic_exchange_explicit_int32_t_memory_order_acquire>:
+  2a:	4505                	li	a0,1
+
+000000000000002c <.L0 >:
+  2c:	00000797          	auipc	a5,0x0
+  30:	00078793          	mv	a5,a5
+  34:	872a                	mv	a4,a0
+  36:	0ce7a72f          	amoswap.w.aq	a4,a4,(a5)
+  3a:	0007051b          	sext.w	a0,a4
+  3e:	8082                	ret
+
+0000000000000040 <atomic_exchange_explicit_int64_t_memory_order_acquire>:
+  40:	4505                	li	a0,1
+
+0000000000000042 <.L0 >:
+  42:	00000797          	auipc	a5,0x0
+  46:	00078793          	mv	a5,a5
+  4a:	872a                	mv	a4,a0
+  4c:	0ce7b72f          	amoswap.d.aq	a4,a4,(a5)
+  50:	853a                	mv	a0,a4
+  52:	8082                	ret
+
+0000000000000054 <atomic_exchange_explicit_int32_t_memory_order_release>:
+  54:	4505                	li	a0,1
+
+0000000000000056 <.L0 >:
+  56:	00000797          	auipc	a5,0x0
+  5a:	00078793          	mv	a5,a5
+  5e:	872a                	mv	a4,a0
+  60:	0f50000f          	fence	iorw,ow
+  64:	08e7a72f          	amoswap.w	a4,a4,(a5)
+  68:	0007051b          	sext.w	a0,a4
+  6c:	8082                	ret
+
+000000000000006e <atomic_exchange_explicit_int64_t_memory_order_release>:
+  6e:	4505                	li	a0,1
+
+0000000000000070 <.L0 >:
+  70:	00000797          	auipc	a5,0x0
+  74:	00078793          	mv	a5,a5
+  78:	872a                	mv	a4,a0
+  7a:	0f50000f          	fence	iorw,ow
+  7e:	08e7b72f          	amoswap.d	a4,a4,(a5)
+  82:	853a                	mv	a0,a4
+  84:	8082                	ret
+
+0000000000000086 <atomic_exchange_explicit_int32_t_memory_order_acq_rel>:
+  86:	4505                	li	a0,1
+
+0000000000000088 <.L0 >:
+  88:	00000797          	auipc	a5,0x0
+  8c:	00078793          	mv	a5,a5
+  90:	872a                	mv	a4,a0
+  92:	0f50000f          	fence	iorw,ow
+  96:	0ce7a72f          	amoswap.w.aq	a4,a4,(a5)
+  9a:	0007051b          	sext.w	a0,a4
+  9e:	8082                	ret
+
+00000000000000a0 <atomic_exchange_explicit_int64_t_memory_order_acq_rel>:
+  a0:	4505                	li	a0,1
+
+00000000000000a2 <.L0 >:
+  a2:	00000797          	auipc	a5,0x0
+  a6:	00078793          	mv	a5,a5
+  aa:	872a                	mv	a4,a0
+  ac:	0f50000f          	fence	iorw,ow
+  b0:	0ce7b72f          	amoswap.d.aq	a4,a4,(a5)
+  b4:	853a                	mv	a0,a4
+  b6:	8082                	ret
+
+00000000000000b8 <atomic_exchange_explicit_int32_t_memory_order_seq_cst>:
+  b8:	4505                	li	a0,1
+
+00000000000000ba <.L0 >:
+  ba:	00000797          	auipc	a5,0x0
+  be:	00078793          	mv	a5,a5
+  c2:	872a                	mv	a4,a0
+  c4:	0f50000f          	fence	iorw,ow
+  c8:	0ce7a72f          	amoswap.w.aq	a4,a4,(a5)
+  cc:	0007051b          	sext.w	a0,a4
+  d0:	8082                	ret
+
+00000000000000d2 <atomic_exchange_explicit_int64_t_memory_order_seq_cst>:
+  d2:	4505                	li	a0,1
+
+00000000000000d4 <.L0 >:
+  d4:	00000797          	auipc	a5,0x0
+  d8:	00078793          	mv	a5,a5
+  dc:	872a                	mv	a4,a0
+  de:	0f50000f          	fence	iorw,ow
+  e2:	0ce7b72f          	amoswap.d.aq	a4,a4,(a5)
+  e6:	853a                	mv	a0,a4
+  e8:	8082                	ret

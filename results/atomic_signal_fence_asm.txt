@@ -1,0 +1,20 @@
+
+build/obj/atomic_signal_fence_asm.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <test_atomic_signal_fence_relaxed>:
+   0:	8082                	ret
+
+0000000000000002 <test_atomic_signal_fence_acquire>:
+   2:	8082                	ret
+
+0000000000000004 <test_atomic_signal_fence_release>:
+   4:	8082                	ret
+
+0000000000000006 <test_atomic_signal_fence_acq_rel>:
+   6:	8082                	ret
+
+0000000000000008 <test_atomic_signal_fence_seq_cst>:
+   8:	8082                	ret

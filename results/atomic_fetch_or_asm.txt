@@ -1,0 +1,96 @@
+
+build/obj/atomic_fetch_or_asm.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <atomic_fetch_or_explicit_int32_t_memory_order_relaxed>:
+   0:	00000797          	auipc	a5,0x0
+   4:	00078793          	mv	a5,a5
+   8:	577d                	li	a4,-1
+   a:	40e7a52f          	amoor.w	a0,a4,(a5)
+
+000000000000000e <.L0 >:
+   e:	2501                	sext.w	a0,a0
+  10:	8082                	ret
+
+0000000000000012 <atomic_fetch_or_explicit_int64_t_memory_order_relaxed>:
+  12:	00000797          	auipc	a5,0x0
+  16:	00078793          	mv	a5,a5
+  1a:	577d                	li	a4,-1
+  1c:	40e7b52f          	amoor.d	a0,a4,(a5)
+
+0000000000000020 <.L0 >:
+  20:	8082                	ret
+
+0000000000000022 <atomic_fetch_or_explicit_int32_t_memory_order_acquire>:
+  22:	00000797          	auipc	a5,0x0
+  26:	00078793          	mv	a5,a5
+  2a:	577d                	li	a4,-1
+  2c:	44e7a52f          	amoor.w.aq	a0,a4,(a5)
+
+0000000000000030 <.L0 >:
+  30:	2501                	sext.w	a0,a0
+  32:	8082                	ret
+
+0000000000000034 <atomic_fetch_or_explicit_int64_t_memory_order_acquire>:
+  34:	00000797          	auipc	a5,0x0
+  38:	00078793          	mv	a5,a5
+  3c:	577d                	li	a4,-1
+  3e:	44e7b52f          	amoor.d.aq	a0,a4,(a5)
+
+0000000000000042 <.L0 >:
+  42:	8082                	ret
+
+0000000000000044 <atomic_fetch_or_explicit_int32_t_memory_order_release>:
+  44:	00000797          	auipc	a5,0x0
+  48:	00078793          	mv	a5,a5
+  4c:	577d                	li	a4,-1
+  4e:	42e7a52f          	amoor.w.rl	a0,a4,(a5)
+
+0000000000000052 <.L0 >:
+  52:	2501                	sext.w	a0,a0
+  54:	8082                	ret
+
+0000000000000056 <atomic_fetch_or_explicit_int64_t_memory_order_release>:
+  56:	00000797          	auipc	a5,0x0
+  5a:	00078793          	mv	a5,a5
+  5e:	577d                	li	a4,-1
+  60:	42e7b52f          	amoor.d.rl	a0,a4,(a5)
+
+0000000000000064 <.L0 >:
+  64:	8082                	ret
+
+0000000000000066 <atomic_fetch_or_explicit_int32_t_memory_order_acq_rel>:
+  66:	00000797          	auipc	a5,0x0
+  6a:	00078793          	mv	a5,a5
+  6e:	577d                	li	a4,-1
+  70:	46e7a52f          	amoor.w.aqrl	a0,a4,(a5)
+
+0000000000000074 <.L0 >:
+  74:	2501                	sext.w	a0,a0
+  76:	8082                	ret
+
+0000000000000078 <atomic_fetch_or_explicit_int64_t_memory_order_acq_rel>:
+  78:	00000797          	auipc	a5,0x0
+  7c:	00078793          	mv	a5,a5
+  80:	577d                	li	a4,-1
+  82:	46e7b52f          	amoor.d.aqrl	a0,a4,(a5)
+
+0000000000000086 <.L0 >:
+  86:	8082                	ret
+
+0000000000000088 <atomic_fetch_or_explicit_int32_t_memory_order_seq_cst>:
+  88:	00000797          	auipc	a5,0x0
+  8c:	00078793          	mv	a5,a5
+  90:	577d                	li	a4,-1
+  92:	46e7a52f          	amoor.w.aqrl	a0,a4,(a5)
+  96:	2501                	sext.w	a0,a0
+  98:	8082                	ret
+
+000000000000009a <atomic_fetch_or_explicit_int64_t_memory_order_seq_cst>:
+  9a:	00000797          	auipc	a5,0x0
+  9e:	00078793          	mv	a5,a5
+  a2:	577d                	li	a4,-1
+  a4:	46e7b52f          	amoor.d.aqrl	a0,a4,(a5)
+  a8:	8082                	ret

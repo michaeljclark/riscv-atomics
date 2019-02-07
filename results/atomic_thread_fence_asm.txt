@@ -1,0 +1,30 @@
+
+build/obj/atomic_thread_fence_asm.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <test_atomic_thread_fence_relaxed>:
+   0:	8082                	ret
+
+0000000000000002 <test_atomic_thread_fence_acquire>:
+   2:	0230000f          	fence	r,rw
+
+0000000000000006 <.L0 >:
+   6:	8082                	ret
+
+0000000000000008 <test_atomic_thread_fence_release>:
+   8:	0310000f          	fence	rw,w
+
+000000000000000c <.L0 >:
+   c:	8082                	ret
+
+000000000000000e <test_atomic_thread_fence_acq_rel>:
+   e:	0330000f          	fence	rw,rw
+
+0000000000000012 <.L0 >:
+  12:	8082                	ret
+
+0000000000000014 <test_atomic_thread_fence_seq_cst>:
+  14:	0330000f          	fence	rw,rw
+  18:	8082                	ret

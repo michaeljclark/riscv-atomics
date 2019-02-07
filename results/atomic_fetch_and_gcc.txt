@@ -1,0 +1,86 @@
+
+build/obj/atomic_fetch_and_gcc.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <atomic_fetch_and_explicit_int32_t_memory_order_relaxed>:
+   0:	00000797          	auipc	a5,0x0
+   4:	00078793          	mv	a5,a5
+   8:	4705                	li	a4,1
+   a:	60e7a52f          	amoand.w	a0,a4,(a5)
+   e:	2501                	sext.w	a0,a0
+  10:	8082                	ret
+
+0000000000000012 <atomic_fetch_and_explicit_int64_t_memory_order_relaxed>:
+  12:	00000797          	auipc	a5,0x0
+  16:	00078793          	mv	a5,a5
+  1a:	4705                	li	a4,1
+  1c:	60e7b52f          	amoand.d	a0,a4,(a5)
+  20:	8082                	ret
+
+0000000000000022 <atomic_fetch_and_explicit_int32_t_memory_order_acquire>:
+  22:	00000797          	auipc	a5,0x0
+  26:	00078793          	mv	a5,a5
+  2a:	4705                	li	a4,1
+  2c:	64e7a52f          	amoand.w.aq	a0,a4,(a5)
+  30:	2501                	sext.w	a0,a0
+  32:	8082                	ret
+
+0000000000000034 <atomic_fetch_and_explicit_int64_t_memory_order_acquire>:
+  34:	00000797          	auipc	a5,0x0
+  38:	00078793          	mv	a5,a5
+  3c:	4705                	li	a4,1
+  3e:	64e7b52f          	amoand.d.aq	a0,a4,(a5)
+  42:	8082                	ret
+
+0000000000000044 <atomic_fetch_and_explicit_int32_t_memory_order_release>:
+  44:	00000797          	auipc	a5,0x0
+  48:	00078793          	mv	a5,a5
+  4c:	4705                	li	a4,1
+  4e:	0f50000f          	fence	iorw,ow
+  52:	60e7a52f          	amoand.w	a0,a4,(a5)
+  56:	2501                	sext.w	a0,a0
+  58:	8082                	ret
+
+000000000000005a <atomic_fetch_and_explicit_int64_t_memory_order_release>:
+  5a:	00000797          	auipc	a5,0x0
+  5e:	00078793          	mv	a5,a5
+  62:	4705                	li	a4,1
+  64:	0f50000f          	fence	iorw,ow
+  68:	60e7b52f          	amoand.d	a0,a4,(a5)
+  6c:	8082                	ret
+
+000000000000006e <atomic_fetch_and_explicit_int32_t_memory_order_acq_rel>:
+  6e:	00000797          	auipc	a5,0x0
+  72:	00078793          	mv	a5,a5
+  76:	4705                	li	a4,1
+  78:	0f50000f          	fence	iorw,ow
+  7c:	64e7a52f          	amoand.w.aq	a0,a4,(a5)
+  80:	2501                	sext.w	a0,a0
+  82:	8082                	ret
+
+0000000000000084 <atomic_fetch_and_explicit_int64_t_memory_order_acq_rel>:
+  84:	00000797          	auipc	a5,0x0
+  88:	00078793          	mv	a5,a5
+  8c:	4705                	li	a4,1
+  8e:	0f50000f          	fence	iorw,ow
+  92:	64e7b52f          	amoand.d.aq	a0,a4,(a5)
+  96:	8082                	ret
+
+0000000000000098 <atomic_fetch_and_explicit_int32_t_memory_order_seq_cst>:
+  98:	00000797          	auipc	a5,0x0
+  9c:	00078793          	mv	a5,a5
+  a0:	4705                	li	a4,1
+  a2:	0f50000f          	fence	iorw,ow
+  a6:	64e7a52f          	amoand.w.aq	a0,a4,(a5)
+  aa:	2501                	sext.w	a0,a0
+  ac:	8082                	ret
+
+00000000000000ae <atomic_fetch_and_explicit_int64_t_memory_order_seq_cst>:
+  ae:	00000797          	auipc	a5,0x0
+  b2:	00078793          	mv	a5,a5
+  b6:	4705                	li	a4,1
+  b8:	0f50000f          	fence	iorw,ow
+  bc:	64e7b52f          	amoand.d.aq	a0,a4,(a5)
+  c0:	8082                	ret

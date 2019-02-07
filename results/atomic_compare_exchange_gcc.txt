@@ -1,0 +1,160 @@
+
+build/obj/atomic_compare_exchange_gcc.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <atomic_compare_exchange_strong_explicit_int32_t_memory_order_relaxed>:
+   0:	00000797          	auipc	a5,0x0
+   4:	00078793          	mv	a5,a5
+   8:	4705                	li	a4,1
+
+000000000000000a <.L11>:
+   a:	1007a52f          	lr.w	a0,(a5)
+   e:	00051563          	bnez	a0,18 <.L12>
+  12:	18e7a6af          	sc.w	a3,a4,(a5)
+  16:	faf5                	bnez	a3,a <.L11>
+
+0000000000000018 <.L12>:
+  18:	2501                	sext.w	a0,a0
+  1a:	00153513          	seqz	a0,a0
+  1e:	8082                	ret
+
+0000000000000020 <atomic_compare_exchange_strong_explicit_int64_t_memory_order_relaxed>:
+  20:	00000797          	auipc	a5,0x0
+  24:	00078793          	mv	a5,a5
+  28:	4705                	li	a4,1
+
+000000000000002a <.L13>:
+  2a:	1007b52f          	lr.d	a0,(a5)
+  2e:	00051563          	bnez	a0,38 <.L14>
+  32:	18e7b6af          	sc.d	a3,a4,(a5)
+  36:	faf5                	bnez	a3,2a <.L13>
+
+0000000000000038 <.L14>:
+  38:	00153513          	seqz	a0,a0
+  3c:	8082                	ret
+
+000000000000003e <atomic_compare_exchange_strong_explicit_int32_t_memory_order_acquire>:
+  3e:	00000797          	auipc	a5,0x0
+  42:	00078793          	mv	a5,a5
+  46:	4705                	li	a4,1
+
+0000000000000048 <.L15>:
+  48:	1007a52f          	lr.w	a0,(a5)
+  4c:	00051563          	bnez	a0,56 <.L16>
+  50:	1ce7a6af          	sc.w.aq	a3,a4,(a5)
+  54:	faf5                	bnez	a3,48 <.L15>
+
+0000000000000056 <.L16>:
+  56:	2501                	sext.w	a0,a0
+  58:	00153513          	seqz	a0,a0
+  5c:	8082                	ret
+
+000000000000005e <atomic_compare_exchange_strong_explicit_int64_t_memory_order_acquire>:
+  5e:	00000797          	auipc	a5,0x0
+  62:	00078793          	mv	a5,a5
+  66:	4705                	li	a4,1
+
+0000000000000068 <.L17>:
+  68:	1007b52f          	lr.d	a0,(a5)
+  6c:	00051563          	bnez	a0,76 <.L18>
+  70:	1ce7b6af          	sc.d.aq	a3,a4,(a5)
+  74:	faf5                	bnez	a3,68 <.L17>
+
+0000000000000076 <.L18>:
+  76:	00153513          	seqz	a0,a0
+  7a:	8082                	ret
+
+000000000000007c <atomic_compare_exchange_strong_explicit_int32_t_memory_order_release>:
+  7c:	00000797          	auipc	a5,0x0
+  80:	00078793          	mv	a5,a5
+  84:	4705                	li	a4,1
+
+0000000000000086 <.L19>:
+  86:	1007a52f          	lr.w	a0,(a5)
+  8a:	00051563          	bnez	a0,94 <.L110>
+  8e:	18e7a6af          	sc.w	a3,a4,(a5)
+  92:	faf5                	bnez	a3,86 <.L19>
+
+0000000000000094 <.L110>:
+  94:	2501                	sext.w	a0,a0
+  96:	00153513          	seqz	a0,a0
+  9a:	8082                	ret
+
+000000000000009c <atomic_compare_exchange_strong_explicit_int64_t_memory_order_release>:
+  9c:	00000797          	auipc	a5,0x0
+  a0:	00078793          	mv	a5,a5
+  a4:	4705                	li	a4,1
+
+00000000000000a6 <.L111>:
+  a6:	1007b52f          	lr.d	a0,(a5)
+  aa:	00051563          	bnez	a0,b4 <.L112>
+  ae:	18e7b6af          	sc.d	a3,a4,(a5)
+  b2:	faf5                	bnez	a3,a6 <.L111>
+
+00000000000000b4 <.L112>:
+  b4:	00153513          	seqz	a0,a0
+  b8:	8082                	ret
+
+00000000000000ba <atomic_compare_exchange_strong_explicit_int32_t_memory_order_acq_rel>:
+  ba:	00000797          	auipc	a5,0x0
+  be:	00078793          	mv	a5,a5
+  c2:	4705                	li	a4,1
+
+00000000000000c4 <.L113>:
+  c4:	1007a52f          	lr.w	a0,(a5)
+  c8:	00051563          	bnez	a0,d2 <.L114>
+  cc:	1ce7a6af          	sc.w.aq	a3,a4,(a5)
+  d0:	faf5                	bnez	a3,c4 <.L113>
+
+00000000000000d2 <.L114>:
+  d2:	2501                	sext.w	a0,a0
+  d4:	00153513          	seqz	a0,a0
+  d8:	8082                	ret
+
+00000000000000da <atomic_compare_exchange_strong_explicit_int64_t_memory_order_acq_rel>:
+  da:	00000797          	auipc	a5,0x0
+  de:	00078793          	mv	a5,a5
+  e2:	4705                	li	a4,1
+
+00000000000000e4 <.L115>:
+  e4:	1007b52f          	lr.d	a0,(a5)
+  e8:	00051563          	bnez	a0,f2 <.L116>
+  ec:	1ce7b6af          	sc.d.aq	a3,a4,(a5)
+  f0:	faf5                	bnez	a3,e4 <.L115>
+
+00000000000000f2 <.L116>:
+  f2:	00153513          	seqz	a0,a0
+  f6:	8082                	ret
+
+00000000000000f8 <atomic_compare_exchange_strong_explicit_int32_t_memory_order_seq_cst>:
+  f8:	00000797          	auipc	a5,0x0
+  fc:	00078793          	mv	a5,a5
+ 100:	4705                	li	a4,1
+
+0000000000000102 <.L117>:
+ 102:	1007a52f          	lr.w	a0,(a5)
+ 106:	00051563          	bnez	a0,110 <.L118>
+ 10a:	1ce7a6af          	sc.w.aq	a3,a4,(a5)
+ 10e:	faf5                	bnez	a3,102 <.L117>
+
+0000000000000110 <.L118>:
+ 110:	2501                	sext.w	a0,a0
+ 112:	00153513          	seqz	a0,a0
+ 116:	8082                	ret
+
+0000000000000118 <atomic_compare_exchange_strong_explicit_int64_t_memory_order_seq_cst>:
+ 118:	00000797          	auipc	a5,0x0
+ 11c:	00078793          	mv	a5,a5
+ 120:	4705                	li	a4,1
+
+0000000000000122 <.L119>:
+ 122:	1007b52f          	lr.d	a0,(a5)
+ 126:	00051563          	bnez	a0,130 <.L120>
+ 12a:	1ce7b6af          	sc.d.aq	a3,a4,(a5)
+ 12e:	faf5                	bnez	a3,122 <.L119>
+
+0000000000000130 <.L120>:
+ 130:	00153513          	seqz	a0,a0
+ 134:	8082                	ret

@@ -1,0 +1,110 @@
+
+build/obj/atomic_load_gcc.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <atomic_load_explicit_int8_t_memory_order_relaxed>:
+   0:	00000517          	auipc	a0,0x0
+   4:	00054503          	lbu	a0,0(a0) # 0 <atomic_load_explicit_int8_t_memory_order_relaxed>
+   8:	0185151b          	slliw	a0,a0,0x18
+   c:	4185551b          	sraiw	a0,a0,0x18
+  10:	8082                	ret
+
+0000000000000012 <atomic_load_explicit_int16_t_memory_order_relaxed>:
+  12:	00000517          	auipc	a0,0x0
+  16:	00055503          	lhu	a0,0(a0) # 12 <atomic_load_explicit_int16_t_memory_order_relaxed>
+  1a:	0105151b          	slliw	a0,a0,0x10
+  1e:	4105551b          	sraiw	a0,a0,0x10
+  22:	8082                	ret
+
+0000000000000024 <atomic_load_explicit_int32_t_memory_order_relaxed>:
+  24:	00000797          	auipc	a5,0x0
+  28:	00078793          	mv	a5,a5
+  2c:	4388                	lw	a0,0(a5)
+  2e:	2501                	sext.w	a0,a0
+  30:	8082                	ret
+
+0000000000000032 <atomic_load_explicit_int64_t_memory_order_relaxed>:
+  32:	00000797          	auipc	a5,0x0
+  36:	00078793          	mv	a5,a5
+  3a:	6388                	ld	a0,0(a5)
+  3c:	8082                	ret
+
+000000000000003e <atomic_load_explicit_int8_t_memory_order_acquire>:
+  3e:	00000797          	auipc	a5,0x0
+  42:	00078793          	mv	a5,a5
+  46:	0007c503          	lbu	a0,0(a5) # 3e <atomic_load_explicit_int8_t_memory_order_acquire>
+  4a:	0ff0000f          	fence
+  4e:	0185151b          	slliw	a0,a0,0x18
+  52:	4185551b          	sraiw	a0,a0,0x18
+  56:	8082                	ret
+
+0000000000000058 <atomic_load_explicit_int16_t_memory_order_acquire>:
+  58:	00000797          	auipc	a5,0x0
+  5c:	00078793          	mv	a5,a5
+  60:	0007d503          	lhu	a0,0(a5) # 58 <atomic_load_explicit_int16_t_memory_order_acquire>
+  64:	0ff0000f          	fence
+  68:	0105151b          	slliw	a0,a0,0x10
+  6c:	4105551b          	sraiw	a0,a0,0x10
+  70:	8082                	ret
+
+0000000000000072 <atomic_load_explicit_int32_t_memory_order_acquire>:
+  72:	00000797          	auipc	a5,0x0
+  76:	00078793          	mv	a5,a5
+  7a:	4388                	lw	a0,0(a5)
+  7c:	0ff0000f          	fence
+  80:	2501                	sext.w	a0,a0
+  82:	8082                	ret
+
+0000000000000084 <atomic_load_explicit_int64_t_memory_order_acquire>:
+  84:	00000797          	auipc	a5,0x0
+  88:	00078793          	mv	a5,a5
+  8c:	6388                	ld	a0,0(a5)
+  8e:	0ff0000f          	fence
+  92:	8082                	ret
+
+0000000000000094 <atomic_load_explicit_int8_t_memory_order_seq_cst>:
+  94:	0ff0000f          	fence
+
+0000000000000098 <.L0 >:
+  98:	00000797          	auipc	a5,0x0
+  9c:	00078793          	mv	a5,a5
+  a0:	0007c503          	lbu	a0,0(a5) # 98 <.L0 >
+  a4:	0ff0000f          	fence
+  a8:	0185151b          	slliw	a0,a0,0x18
+  ac:	4185551b          	sraiw	a0,a0,0x18
+  b0:	8082                	ret
+
+00000000000000b2 <atomic_load_explicit_int16_t_memory_order_seq_cst>:
+  b2:	0ff0000f          	fence
+
+00000000000000b6 <.L0 >:
+  b6:	00000797          	auipc	a5,0x0
+  ba:	00078793          	mv	a5,a5
+  be:	0007d503          	lhu	a0,0(a5) # b6 <.L0 >
+  c2:	0ff0000f          	fence
+  c6:	0105151b          	slliw	a0,a0,0x10
+  ca:	4105551b          	sraiw	a0,a0,0x10
+  ce:	8082                	ret
+
+00000000000000d0 <atomic_load_explicit_int32_t_memory_order_seq_cst>:
+  d0:	0ff0000f          	fence
+
+00000000000000d4 <.L0 >:
+  d4:	00000797          	auipc	a5,0x0
+  d8:	00078793          	mv	a5,a5
+  dc:	4388                	lw	a0,0(a5)
+  de:	0ff0000f          	fence
+  e2:	2501                	sext.w	a0,a0
+  e4:	8082                	ret
+
+00000000000000e6 <atomic_load_explicit_int64_t_memory_order_seq_cst>:
+  e6:	0ff0000f          	fence
+
+00000000000000ea <.L0 >:
+  ea:	00000797          	auipc	a5,0x0
+  ee:	00078793          	mv	a5,a5
+  f2:	6388                	ld	a0,0(a5)
+  f4:	0ff0000f          	fence
+  f8:	8082                	ret

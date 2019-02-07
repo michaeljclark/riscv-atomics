@@ -1,0 +1,83 @@
+
+build/obj/atomic_flag_test_and_set_gcc.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <test_atomic_flag_test_and_set_relaxed>:
+   0:	00000797          	auipc	a5,0x0
+   4:	00078793          	mv	a5,a5
+   8:	0037f513          	andi	a0,a5,3
+   c:	0035151b          	slliw	a0,a0,0x3
+  10:	4685                	li	a3,1
+  12:	9bf1                	andi	a5,a5,-4
+  14:	00a696bb          	sllw	a3,a3,a0
+  18:	40d7a72f          	amoor.w	a4,a3,(a5)
+  1c:	00a7553b          	srlw	a0,a4,a0
+
+0000000000000020 <.L0 >:
+  20:	0ff57513          	andi	a0,a0,255
+  24:	8082                	ret
+
+0000000000000026 <test_atomic_flag_test_and_set_acquire>:
+  26:	00000797          	auipc	a5,0x0
+  2a:	00078793          	mv	a5,a5
+  2e:	0037f513          	andi	a0,a5,3
+  32:	0035151b          	slliw	a0,a0,0x3
+  36:	4685                	li	a3,1
+  38:	9bf1                	andi	a5,a5,-4
+  3a:	00a696bb          	sllw	a3,a3,a0
+  3e:	44d7a72f          	amoor.w.aq	a4,a3,(a5)
+  42:	00a7553b          	srlw	a0,a4,a0
+
+0000000000000046 <.L0 >:
+  46:	0ff57513          	andi	a0,a0,255
+  4a:	8082                	ret
+
+000000000000004c <test_atomic_flag_test_and_set_release>:
+  4c:	00000797          	auipc	a5,0x0
+  50:	00078793          	mv	a5,a5
+  54:	0037f513          	andi	a0,a5,3
+  58:	0035151b          	slliw	a0,a0,0x3
+  5c:	4685                	li	a3,1
+  5e:	9bf1                	andi	a5,a5,-4
+  60:	00a696bb          	sllw	a3,a3,a0
+  64:	0f50000f          	fence	iorw,ow
+  68:	40d7a72f          	amoor.w	a4,a3,(a5)
+  6c:	00a7553b          	srlw	a0,a4,a0
+
+0000000000000070 <.L0 >:
+  70:	0ff57513          	andi	a0,a0,255
+  74:	8082                	ret
+
+0000000000000076 <test_atomic_flag_test_and_set_acq_rel>:
+  76:	00000797          	auipc	a5,0x0
+  7a:	00078793          	mv	a5,a5
+  7e:	0037f513          	andi	a0,a5,3
+  82:	0035151b          	slliw	a0,a0,0x3
+  86:	4685                	li	a3,1
+  88:	9bf1                	andi	a5,a5,-4
+  8a:	00a696bb          	sllw	a3,a3,a0
+  8e:	0f50000f          	fence	iorw,ow
+  92:	44d7a72f          	amoor.w.aq	a4,a3,(a5)
+  96:	00a7553b          	srlw	a0,a4,a0
+
+000000000000009a <.L0 >:
+  9a:	0ff57513          	andi	a0,a0,255
+  9e:	8082                	ret
+
+00000000000000a0 <test_atomic_flag_test_and_set_seq_cst>:
+  a0:	00000797          	auipc	a5,0x0
+  a4:	00078793          	mv	a5,a5
+  a8:	0037f513          	andi	a0,a5,3
+  ac:	0035151b          	slliw	a0,a0,0x3
+  b0:	4685                	li	a3,1
+  b2:	9bf1                	andi	a5,a5,-4
+  b4:	00a696bb          	sllw	a3,a3,a0
+  b8:	0f50000f          	fence	iorw,ow
+  bc:	44d7a72f          	amoor.w.aq	a4,a3,(a5)
+  c0:	00a7553b          	srlw	a0,a4,a0
+
+00000000000000c4 <.L0 >:
+  c4:	0ff57513          	andi	a0,a0,255
+  c8:	8082                	ret
