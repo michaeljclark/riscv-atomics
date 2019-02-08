@@ -1,14 +1,14 @@
 # RISC-V Atomics Results
 
-The following results are from an intrinsics comparison between the GCC 8.1
-_(build-date 29-Jun-2018)_ atomic intrinsics, the hand-coded assembly
+The following results are from an intrinsics comparison between GCC 8.2
+_(build-date 8-Feb-2019)_ atomic intrinsics, the hand-coded assembly
 alternatives herein, and C/C++ Atomic primitives guidelines in the The
 RISC-V Instruction Set Manual Volume I: User-Level ISA Document
 Version 2.3-draft _(build-date 7-Feb-2019)_.
 
 ```
 $ riscv64-unknown-elf-gcc --version
-riscv64-unknown-elf-gcc (GCC) 8.1.0
+riscv64-unknown-elf-gcc (GCC) 8.2.0
 Copyright (C) 2018 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
